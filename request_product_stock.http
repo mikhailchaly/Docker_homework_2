@@ -1,0 +1,99 @@
+@baseUrl = http://localhost:8000/api/v1
+
+# создание продуктов
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+    "title": "Вишня китайская",
+    "description": "Это ягода"
+}
+
+###
+
+# получение всех продуктов
+GET {{baseUrl}}/products/
+
+###
+
+# получение продуктов по названию или описания
+GET {{baseUrl}}/products/?q=арбуз
+
+###
+
+# обновление продуктов
+PATCH {{baseUrl}}/products/4/
+Content-Type: application/json
+
+{
+    "title": "огурцы ПУПЫРЧАТЫЕ зеленые",
+    "description": "Очень очень зеленые"
+}
+
+###
+
+# удаление продуктов
+DELETE {{baseUrl}}/products/1/
+
+###
+
+# Создание склада
+POST {{baseUrl}}/stocks/
+Content-Type: application/json
+
+{
+  "address": "ГлавСклад",
+  "positions": [
+    {
+      "product": 4,
+      "quantity": 1000,
+      "price": 2.50
+    },
+    {
+      "product": 6,
+      "quantity": 400,
+      "price": 525.40
+    }
+  ]
+}
+
+###
+
+
+# обновляем записи на складе
+PATCH {{baseUrl}}/stocks/6/
+Content-Type: application/json
+
+{
+  "positions": [
+    {
+      "product": 4,
+      "quantity": 77777,
+      "price": 2222.80
+    },
+    {
+      "product": 6,
+      "quantity": 55555,
+      "price": 99999.23
+    }
+  ]
+}
+
+###
+
+# поиск складов, где есть определенный продукт
+GET {{baseUrl}}/stocks/?products=9
+
+###
+
+# получения складов по названию продуктов
+GET {{baseUrl}}/stocks/?q=зеленные, поздние
+
+###
+
+# получения списка складов
+GET {{baseUrl}}/stocks/
+
+###
+DELETE {{baseUrl}}/stocks/1/
+
